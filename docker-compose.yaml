@@ -1,4 +1,4 @@
-name: nuxt3-template
+name: form-bean
 
 services:
   mysql:
