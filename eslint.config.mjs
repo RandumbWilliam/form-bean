@@ -7,4 +7,7 @@ export default withNuxt({
 	plugins: {
 		prettier: prettierPlugin,
 	},
+	rules: {
+		'vue/multi-word-component-names': ['off'],
+	},
 });

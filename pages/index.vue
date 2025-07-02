@@ -1,6 +1,11 @@
+<script setup lang="ts">
+	import { Builder } from '~/form-builder';
+
+	const draftForm = ref([{ id: 'test-form', elementInstances: [] }]);
+</script>
+
 <template>
-	<div>
-		<NuxtRouteAnnouncer />
-		<NuxtWelcome />
-	</div>
+	<section>
+		<Builder :form="draftForm" />
+	</section>
 </template>
