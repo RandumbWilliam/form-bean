@@ -1,0 +1,27 @@
+<script setup lang="ts">
+	import type { SingleChoiceInstance } from '..';
+
+	const model = defineModel<string[]>();
+	const props = defineProps<{
+		elementInstance: SingleChoiceInstance;
+	}>();
+</script>
+
+<template>
+	<Select v-model="model" class="w-full border-none shadow-none">
+		<SelectTrigger class="w-full border-none shadow-none">
+			<SelectValue placeholder="Expected value" />
+		</SelectTrigger>
+		<SelectContent>
+			<SelectGroup>
+				<SelectItem
+					v-for="option in props.elementInstance.properties.options"
+					:key="option.id"
+					:value="option.id"
+				>
+					{{ option.label }}
+				</SelectItem>
+			</SelectGroup>
+		</SelectContent>
+	</Select>
+</template>

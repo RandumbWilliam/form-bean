@@ -1,9 +1,9 @@
 import { CircleCheck } from 'lucide-vue-next';
 import * as yup from 'yup';
-import { generateId } from '../../utils';
-import type { Element, ElementInstance, Option } from '../index';
+import { generateId } from '~/form-builder/utils';
+import type { Element, ElementInstance, Option } from '..';
 
-import { Input, MultiSelect } from './operand-value-inputs';
+import { MultiSelect, SingleSelect } from './operand-value-inputs';
 import SingleChoiceField from './SingleChoiceField.vue';
 import SingleChoiceProperties from './SingleChoiceProperties.vue';
 
@@ -37,7 +37,7 @@ export const SingleChoiceElement: Element<
 	},
 	conditionFns: {
 		equals: {
-			operandValueInput: Input,
+			operandValueInput: SingleSelect,
 			fn: (value: string, operandValue: string) => value === operandValue,
 		},
 		'one of': {

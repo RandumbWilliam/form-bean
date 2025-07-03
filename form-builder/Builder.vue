@@ -82,7 +82,7 @@
 					}"
 					:clone="onDraggableClone"
 					:sort="false"
-					class="flex flex-col gap-3"
+					class="flex flex-col gap-1"
 				>
 					<div
 						v-for="(element, elementIndex) in group.elements"
@@ -163,7 +163,7 @@
 												Make changes to the field or apply rules to it.
 											</SheetDescription>
 										</SheetHeader>
-										<div class="overflow-y-auto px-4">
+										<div class="overflow-y-auto px-4 pb-4">
 											<Tabs default-value="properties">
 												<TabsList class="grid w-full grid-cols-2">
 													<TabsTrigger value="properties">

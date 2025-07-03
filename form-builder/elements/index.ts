@@ -3,6 +3,11 @@ import type * as yup from 'yup';
 import type { ConditionGroup } from '../condition';
 
 import {
+	MultiChoiceElement,
+	MultiChoiceType,
+	type MultiChoiceInstance,
+} from './MultiChoice';
+import {
 	SingleChoiceElement,
 	SingleChoiceType,
 	type SingleChoiceInstance,
@@ -53,11 +58,15 @@ export type ElementTypes = keyof typeof Elements;
 
 export type Elements = (typeof Elements)[keyof typeof Elements];
 
-export type ElementInstances = SingleLineInstance | SingleChoiceInstance;
+export type ElementInstances =
+	| SingleLineInstance
+	| SingleChoiceInstance
+	| MultiChoiceInstance;
 
 export const Elements = {
 	[SingleLineType]: SingleLineElement,
 	[SingleChoiceType]: SingleChoiceElement,
+	[MultiChoiceType]: MultiChoiceElement,
 };
 
 export const GroupElements = [
@@ -67,6 +76,6 @@ export const GroupElements = [
 	},
 	{
 		group: 'Choice Fields',
-		elements: [SingleChoiceElement],
+		elements: [SingleChoiceElement, MultiChoiceElement],
 	},
 ];

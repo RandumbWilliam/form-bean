@@ -1,7 +1,7 @@
 import { TextCursorInput } from 'lucide-vue-next';
 import * as yup from 'yup';
-import { generateId } from '../../utils';
-import type { Element, ElementInstance } from '../index';
+import { generateId } from '~/form-builder/utils';
+import type { Element, ElementInstance } from '..';
 
 import { Input } from './operand-value-inputs';
 import SingleLineField from './SingleLineField.vue';
