@@ -35,6 +35,14 @@ export const SingleLineElement: Element<
 			schema = schema.required();
 		}
 
+		if (validations.min && validations.min > 0) {
+			schema = schema.min(validations.min);
+		}
+
+		if (validations.max && validations.max > 0) {
+			schema = schema.max(validations.max);
+		}
+
 		return schema;
 	},
 	conditionFns: {

@@ -42,6 +42,10 @@
 		form.value.pages.splice(index, 1);
 	}
 
+	function deleteElement(pageIndex: number, elementIndex: number) {
+		form.value.pages[pageIndex].elementInstances.splice(elementIndex, 1);
+	}
+
 	function getConditionFields(pageIndex: number, elementIndex: number) {
 		const fields = form.value.pages.slice(0, pageIndex + 1).map((page, i) => {
 			if (i === pageIndex) {
@@ -99,8 +103,6 @@
 		</div>
 
 		<div class="flex w-full justify-center pl-60">
-			<pre>{{ form }}</pre>
-
 			<Form class="flex w-full max-w-3xl flex-col p-6">
 				<div
 					v-for="(page, pageIndex) in form.pages"
@@ -198,7 +200,12 @@
 										</SheetFooter>
 									</SheetContent>
 								</Sheet>
-								<Button type="button" size="icon" variant="destructive">
+								<Button
+									type="button"
+									size="icon"
+									variant="destructive"
+									@click.prevent="deleteElement(pageIndex, elementIndex)"
+								>
 									<Trash2 />
 								</Button>
 							</div>

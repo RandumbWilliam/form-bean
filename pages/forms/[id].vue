@@ -5,7 +5,7 @@
 	const route = useRoute();
 	const formId = route.params.id as string;
 
-	const { getForm } = useForms();
+	const { getForm, updateForm } = useForms();
 
 	const { data, status } = await useLazyAsyncData(`form-${formId}`, () =>
 		getForm(formId)
@@ -15,6 +15,18 @@
 
 	function togglePreview() {
 		preview.value = !preview.value;
+	}
+
+	async function onSave() {
+		try {
+			if (data.value) {
+				await updateForm(data.value?.id, data.value?.form);
+
+				alert('Saved');
+			}
+		} catch (error) {
+			console.log(error);
+		}
 	}
 </script>
 
@@ -41,7 +53,9 @@
 					<Button variant="outline" @click.prevent="togglePreview">
 						Preview
 					</Button>
-					<Button variant="outline">Save</Button>
+					<Button type="button" variant="outline" @click.prevent="onSave">
+						Save
+					</Button>
 					<Button>Publish</Button>
 				</div>
 			</template>
@@ -49,5 +63,14 @@
 
 		<Render v-if="preview" :form="data.form" />
 		<Builder v-else :form="data.form" />
+
+		<Popover>
+			<PopoverTrigger as-child>
+				<Button variant="outline" class="absolute right-2 bottom-2">Dev</Button>
+			</PopoverTrigger>
+			<PopoverContent class="w-[800px]" align="end">
+				<pre class="text-xs">{{ data }}</pre>
+			</PopoverContent>
+		</Popover>
 	</section>
 </template>

@@ -22,9 +22,17 @@ export const useForms = () => {
 		return formId;
 	}
 
+	async function updateForm(formId: string, body: createFormDto) {
+		await $fetch(`/api/forms/${formId}`, {
+			method: 'PATCH',
+			body,
+		});
+	}
+
 	return {
 		getForms,
 		getForm,
 		createForm,
+		updateForm,
 	};
 };

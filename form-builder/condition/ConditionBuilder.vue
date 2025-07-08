@@ -21,7 +21,12 @@
 </script>
 
 <template>
-	<div v-if="noFields">No previous fields</div>
+	<div
+		v-if="noFields"
+		class="bg-muted text-muted-foreground flex h-20 w-full cursor-pointer items-center justify-center rounded-md"
+	>
+		No previous fields
+	</div>
 	<template v-else>
 		<Group
 			v-if="elementInstance.conditions"
