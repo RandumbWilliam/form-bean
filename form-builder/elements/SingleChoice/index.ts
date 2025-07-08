@@ -19,7 +19,7 @@ export const SingleChoiceElement: Element<
 		type: SingleChoiceType,
 		properties: {
 			label: '',
-			options: [],
+			options: [{ id: generateId('single-choice-option'), label: 'Option 1' }],
 		},
 		validations: {
 			required: false,

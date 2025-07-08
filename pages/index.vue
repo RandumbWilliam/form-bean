@@ -1,11 +1,7 @@
-<script setup lang="ts">
-	import { Builder } from '~/form-builder';
-
-	const draftForm = ref([{ id: 'test-form', elementInstances: [] }]);
-</script>
+<script setup lang="ts"></script>
 
 <template>
-	<section>
-		<Builder :form="draftForm" />
+	<section class="flex h-screen items-center justify-center">
+		<h1>Formbean</h1>
 	</section>
 </template>

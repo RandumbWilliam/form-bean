@@ -13,7 +13,7 @@
 
 	const props = defineProps<{
 		modelValue: ConditionGroup;
-		fields: Form;
+		fields: Form['pages'];
 		level: number;
 	}>();
 

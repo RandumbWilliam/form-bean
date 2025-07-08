@@ -5,7 +5,7 @@
 	import Group from './Group.vue';
 
 	const props = defineProps<{
-		fields: Form;
+		fields: Form['pages'];
 		elementInstance: ElementInstances;
 	}>();
 

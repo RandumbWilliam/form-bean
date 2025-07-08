@@ -11,7 +11,7 @@
 		form: Form;
 	}>();
 
-	const form = ref<Form>(props.form);
+	const form = ref(props.form);
 	// const dragImageRefs = useTemplateRef('dragImageRefs');
 
 	function onDraggableClone(element: Elements) {
@@ -32,18 +32,18 @@
 	// }
 
 	function addPage(index: number) {
-		form.value.splice(index, 0, {
+		form.value.pages.splice(index, 0, {
 			id: generateId('page'),
 			elementInstances: [],
 		});
 	}
 
 	function deletePage(index: number) {
-		form.value.splice(index, 1);
+		form.value.pages.splice(index, 1);
 	}
 
 	function getConditionFields(pageIndex: number, elementIndex: number) {
-		const fields = form.value.slice(0, pageIndex + 1).map((page, i) => {
+		const fields = form.value.pages.slice(0, pageIndex + 1).map((page, i) => {
 			if (i === pageIndex) {
 				return {
 					...page,
@@ -103,17 +103,21 @@
 
 			<Form class="flex w-full max-w-3xl flex-col p-6">
 				<div
-					v-for="(page, pageIndex) in form"
+					v-for="(page, pageIndex) in form.pages"
 					:key="page.id"
 					class="flex w-full flex-col gap-1"
 				>
 					<div class="text-muted-foreground flex items-center justify-between">
 						<p class="text-sm">Page {{ pageIndex + 1 }}</p>
 						<div class="flex items-center gap-1.5">
-							<button v-if="form.length > 1 && pageIndex !== 0">
+							<button v-if="form.pages.length > 1 && pageIndex !== 0">
 								<ArrowUp :size="18" />
 							</button>
-							<button v-if="form.length > 1 && pageIndex !== form.length - 1">
+							<button
+								v-if="
+									form.pages.length > 1 && pageIndex !== form.pages.length - 1
+								"
+							>
 								<ArrowDown :size="18" />
 							</button>
 							<button

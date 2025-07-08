@@ -4,7 +4,7 @@
 	import { Elements, type ElementInstances } from '../elements';
 
 	const props = defineProps<{
-		fields: Form;
+		fields: Form['pages'];
 		condition: Condition;
 	}>();
 
