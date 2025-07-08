@@ -42,14 +42,14 @@
 
 		<div class="flex items-center space-x-2">
 			<Checkbox
-				id="single-line-required"
+				id="single-choice-required"
 				v-model="elementInstance.validations.required"
 			/>
-			<Label for="single-line-required">Required</Label>
+			<Label for="single-choice-required">Required</Label>
 		</div>
 
 		<div class="space-y-2">
-			<Label for="single-line-required">Options</Label>
+			<Label>Options</Label>
 			<VueDraggable
 				v-model="elementInstance.properties.options"
 				:animation="150"

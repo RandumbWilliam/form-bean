@@ -68,8 +68,8 @@
 			<PopoverTrigger as-child>
 				<Button variant="outline" class="absolute right-2 bottom-2">Dev</Button>
 			</PopoverTrigger>
-			<PopoverContent class="w-[800px]" align="end">
-				<pre class="text-xs">{{ data }}</pre>
+			<PopoverContent class="h-[500px] w-[800px] overflow-auto" align="end">
+				<pre class="text-xs">{{ data.form }}</pre>
 			</PopoverContent>
 		</Popover>
 	</section>

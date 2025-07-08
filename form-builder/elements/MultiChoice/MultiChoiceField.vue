@@ -46,11 +46,19 @@
 	>
 		<FormItem class="space-y-3">
 			<FormLabel>
-				<template v-if="props.elementInstance.properties.label">
-					{{ props.elementInstance.properties.label }}
-				</template>
-				<span v-else-if="props.draft" class="text-muted-foreground italic">
-					No Question
+				<span>
+					<template v-if="props.elementInstance.properties.label">
+						{{ props.elementInstance.properties.label }}
+					</template>
+					<span v-else-if="props.draft" class="text-muted-foreground italic">
+						No Question
+					</span>
+					<span
+						v-if="props.elementInstance.validations.required"
+						class="text-destructive"
+					>
+						*
+					</span>
 				</span>
 			</FormLabel>
 

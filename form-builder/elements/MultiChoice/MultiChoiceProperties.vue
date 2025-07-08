@@ -1,12 +1,29 @@
 <script setup lang="ts">
-	import { X } from 'lucide-vue-next';
+	import { GripVertical, X } from 'lucide-vue-next';
+	import { VueDraggable } from 'vue-draggable-plus';
+	import { generateId } from '~/form-builder/utils';
 	import type { MultiChoiceInstance } from '.';
-
 	const props = defineProps<{
 		elementInstance: MultiChoiceInstance;
 	}>();
 
 	const elementInstance = ref(props.elementInstance);
+	const inputOptionRefs = useTemplateRef('input-option');
+
+	function addOption(index: number) {
+		elementInstance.value.properties.options.splice(index + 1, 0, {
+			id: generateId('multi-choice-option'),
+			label: '',
+		});
+
+		nextTick(() => {
+			inputOptionRefs.value?.[index + 1]?.$el.focus();
+		});
+	}
+
+	function deleteOption(index: number) {
+		elementInstance.value.properties.options.splice(index, 1);
+	}
 </script>
 
 <template>
@@ -29,22 +46,43 @@
 
 		<div class="space-y-2">
 			<Label>Options</Label>
-			<div
-				v-for="option in props.elementInstance.properties.options"
-				:key="option.id"
+			<VueDraggable
+				v-model="elementInstance.properties.options"
+				:animation="150"
+				:group="`${elementInstance.id}_options`"
+				class="flex flex-col gap-3"
+				handle=".drag-handle"
 			>
-				<div class="relative flex items-center gap-2">
+				<div
+					v-for="(option, index) in elementInstance.properties.options"
+					:key="option.id"
+					class="relative flex items-center gap-2"
+				>
+					<div class="drag-handle cursor-move">
+						<GripVertical :size="18" />
+					</div>
 					<Input
-						ref="inputOptions"
+						ref="input-option"
 						v-model="option.label"
-						type="text"
-						placeholder="Option"
-						class="pr-8"
+						@keyup.enter="addOption(index)"
 					/>
-					<button type="button" class="absolute top-0 right-2 h-full">
+					<button
+						type="button"
+						class="absolute top-0 right-2 h-full"
+						@click.prevent="deleteOption(index)"
+					>
 						<X :size="18" class="text-muted-foreground" />
 					</button>
 				</div>
+			</VueDraggable>
+			<div class="flex justify-end gap-3">
+				<button
+					type="button"
+					class="mt-2 text-sm font-medium"
+					@click="addOption(elementInstance.properties.options.length - 1)"
+				>
+					Add Option
+				</button>
 			</div>
 		</div>
 	</div>
