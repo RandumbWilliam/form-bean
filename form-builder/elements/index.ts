@@ -8,6 +8,11 @@ import {
 	type MultiChoiceInstance,
 } from './MultiChoice';
 import {
+	MultiLineElement,
+	MultiLineType,
+	type MultiLineInstance,
+} from './MultiLine';
+import {
 	SingleChoiceElement,
 	SingleChoiceType,
 	type SingleChoiceInstance,
@@ -61,18 +66,20 @@ export type Elements = (typeof Elements)[keyof typeof Elements];
 export type ElementInstances =
 	| SingleLineInstance
 	| SingleChoiceInstance
-	| MultiChoiceInstance;
+	| MultiChoiceInstance
+	| MultiLineInstance;
 
 export const Elements = {
 	[SingleLineType]: SingleLineElement,
 	[SingleChoiceType]: SingleChoiceElement,
 	[MultiChoiceType]: MultiChoiceElement,
+	[MultiLineType]: MultiLineElement,
 };
 
 export const GroupElements = [
 	{
 		group: 'Text Fields',
-		elements: [SingleLineElement],
+		elements: [SingleLineElement, MultiLineElement],
 	},
 	{
 		group: 'Choice Fields',
